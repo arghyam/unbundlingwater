@@ -1,32 +1,6 @@
-#CODE FOR GETTING DETAILS OF ONE USER
-
-# import requests
-# import json
-
-# url = "https://widget-api.socion.io/openwidgetapi"
-
-# payload = "{\"query\":\"{\\n  userDetailData(\\n    practitionerId: \\\"68d802d6-0ce4-45cb-86d2-2ca69cf9d2a0\\\"\\n    programId: 27\\n    userId: \\\"03a38860-092a-442a-bb94-43a0b5987bf7\\\"\\n    isPrivateUser: true\\n  ) {\\n    __typename\\n    ... on UserDetail {\\n      userId\\n      emailId\\n      country\\n      state\\n      city\\n      photo\\n      name\\n      phoneNumber\\n      district\\n      programId\\n      latitude\\n      userRole\\n      longitude\\n      badgeDetails {\\n        badgeId\\n        badgeName\\n        __typename\\n      }\\n      traineeData {\\n        topicName\\n        issuedDate\\n        __typename\\n      }\\n      trainerData {\\n        topicName\\n        issuedDate\\n        __typename\\n      }\\n      roleTitle\\n      qualificationTitle\\n      __typename\\n    }\\n  }\\n}\\n\",\"variables\":{}}"
-# headers = {
-#   'accept': 'application/json, text/plain, */*',
-#   'accept-language': 'en,en-US;q=0.9',
-#   'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGZ2JkZGQ3SmhHZ05xa3I0b1ljVGtVZnVyLTk5OGQxRUtQRWJWeXl3RGE4In0.eyJleHAiOjE3NTA3MzUxMzcsImlhdCI6MTcxOTE5OTEzNywianRpIjoiYmJhOThhNzItNmIwMC00YWQ0LTk2NWUtOGJmN2ZkYTU4NjY4IiwiaXNzIjoiaHR0cHM6Ly9wZGEuc29jaW9uLmlvL2F1dGgvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIwM2EzODg2MC0wOTJhLTQ0MmEtYmI5NC00M2EwYjU5ODdiZjciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhZG1pbi1jbGkiLCJzZXNzaW9uX3N0YXRlIjoiNjMwMTg4ODEtYWNmZi00MDMyLTk0Y2UtZjg2YzI3Mjc4MDZmIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJBY3RpdmUyIHByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJLYW5pc2hrYSAgUGF0d2EiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiI2Mzc2NTM3NzY4IiwiZ2l2ZW5fbmFtZSI6IkthbmlzaGthICBQYXR3YSJ9.ZuaBzW2t8Spra1wW4BxT0jzU9FKCJ5sT1PQ4VU4VirWcJa7ypqCcXD4ANGcIwOaFoCPzlVcROoE6Z0YvRUwymKsw1rR75HM6hb6L-kVluLvddGtuVtrNUwqP8uk0vHBADjdIksbId698nLbKsPRu9NreYEtAwoqWoz_pvshAHhyVvR3X55lWIER4Nf_PBuK5M2W9_RLJ-xFCU6-nXKg7HuqDKep-iE6oGVY6wBvC0IjpD1zM_ucgBZqkubhBHGueQP6b9aEQjYhqL6pUWwMSA8UN9xOEVtbW-cXx1ECRKqjZad9YYk0x_FpNVeAVe6K0JA0Td8zTVeMXVI-sHo8KnQ',
-#   'content-type': 'application/json',
-#   'origin': 'https://widget.socion.io',
-#   'priority': 'u=1, i',
-#   'referer': 'https://widget.socion.io/',
-#   'sec-ch-ua': '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
-#   'sec-ch-ua-mobile': '?0',
-#   'sec-ch-ua-platform': '"Windows"',
-#   'sec-fetch-dest': 'empty',
-#   'sec-fetch-mode': 'cors',
-#   'sec-fetch-site': 'same-site',
-#   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
-# }
-# response = requests.request("POST", url, headers=headers, data=payload)
-# print(response.text)
 
 
-#CODE FOR GETTING DETAILS OF MULTIPLE  USER
+#CODE FOR GETTING DETAILS OF MULTIPLE  USER (Here is code for some id) 
 import requests
 import json
 
