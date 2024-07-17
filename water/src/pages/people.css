@@ -1,0 +1,142 @@
+/* .people {
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 900px;
+  }
+  
+  
+  .search {
+    padding: 10px;
+    font-size: 20px;
+    width: 50%;
+ 
+  }
+  
+  .list {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+  }
+  
+  .listItem {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #444;
+    font-weight: 300;
+  }
+  
+  table {
+    width: 100%;
+    margin: 50px 0px;
+    border-spacing: 15px;
+    color: #444;
+  }
+  
+  tr {
+    margin-bottom: 20px;
+  }
+  
+  th {
+    width: 250px;
+    text-align: left;
+    font-size: 20px;
+  }
+  
+  td {
+    width: 250px;
+    font-size: 20px;
+  }
+  .dropdown-button {
+    background-color: #f1f1f1;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+    width: 50%;
+  }
+  
+  .dropdown-content {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 5px;
+  }
+  .dropdown-indicator {
+    font-size: 11px;
+    margin-left: 10px;
+  }
+
+   */
+
+   .app {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .search {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  .list {
+    list-style-type: none;
+    padding: 0;
+
+  }
+  
+  .listItem {
+    margin-bottom: 10px;
+  }
+  
+  .name-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 50%;
+  }
+  
+  .dropdown-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dropdown-indicator {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  
+  .dropdown-content {
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  
+  .dropdown-content h4 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .dropdown-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .dropdown-content ul li {
+    border-bottom: 1px solid #eee;
+    padding: 5px 0;
+  }
+  
