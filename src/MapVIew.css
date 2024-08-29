@@ -1,0 +1,19 @@
+#map {
+  height: 100vh;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: calc(100vh - 56px); /* Example to account for a header or navbar */
+  }
+
+  .leaflet-popup-content-wrapper {
+    width: 90vw; /* Ensure popups don't overflow on small screens */
+  }
+
+  .leaflet-control-zoom {
+    right: 10px;
+    bottom: 50px;
+  }
+}
