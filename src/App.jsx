@@ -10,6 +10,7 @@ import MapView from "./MapView";
 import { userData } from "./complete_userdetails";
 import TrainersList from "./pages/TrainersList";
 import TraineeList from "./pages/TraineeList";
+import Ping from "./pages/pong"
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/map" element={<MapView userData={userData} />} />
           <Route path="/trainers-list" element={<TrainersList />} />
           <Route path="/trainee-list" element={<TraineeList />} />
+          <Route path="/ping" element={<Ping/>}/>
         </Routes>
       </RootLayout>
     </Router>
