@@ -87,7 +87,7 @@ function Homes() {
           </Content>
           <Grid container justifyContent="center" spacing={2}>
             <Grid item>
-              <Link to="/people" style={{ textDecoration: 'none' }}>
+              <Link to="/peoplecontainer" style={{ textDecoration: 'none' }}>
                 <ButtonStyled variant="contained" color="primary">
                   People Assets
                 </ButtonStyled>

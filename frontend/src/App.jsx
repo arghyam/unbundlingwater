@@ -11,6 +11,7 @@ import { userData } from "./complete_userdetails";
 import TrainersList from "./pages/TrainersList";
 import TraineeList from "./pages/TraineeList";
 import Ping from "./pages/pong"
+import PeopleContainer from "./pages/search/PeopleContainer";
 
 const App = () => {
   return (
@@ -20,7 +21,8 @@ const App = () => {
           <Route path="/" element={<Homes />} />
           <Route path="/content" element={<Content />} />
           <Route path="/about" element={<About />} />
-          <Route path="/people" element={<People />} />
+          {/* <Route path="/people" element={<People />} /> */}
+          <Route path="/peoplecontainer" element={<PeopleContainer />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/analytics/:aID" element={<Analytics />} />
           <Route path="/map" element={<MapView userData={userData} />} />

@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { data } from '../content';
+import { fetchTopicsByName, searchTopicsByName } from '../api';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -21,27 +22,29 @@ const Content = () => {
 
   useEffect(() => {
     if (query) {
-      setSuggestions(getSuggestions(data, query));
+      searchTopicsByName(query).then(data => {
+        setSuggestions(data.map(i => i.name))
+      })
     } else {
       setSuggestions([]);
     }
   }, [query]);
 
-  const getSuggestions = (data, query) => {
-    return data.filter(item =>
-      item.name.toLowerCase().includes(query)
-    );
-  };
-
   const handleSearchChange = (e) => {
+    fetchTopicsByName(e.target.value).then(data => {
+      setSuggestions(data)
+    })
     setQuery(e.target.value.toLowerCase());
     setSelectedItem(null);
   };
 
   const handleSuggestionClick = (item) => {
-    setSelectedItem(item);
-    setQuery(item.name);
-    setSuggestions([]);
+    fetchTopicsByName(item).then(data => {
+      console.log(data)
+      setSelectedItem(data[0])
+      // setQuery(item)
+    })
+    setSuggestions(null);
   };
 
   const truncateDescription = (description, maxLength) => {
@@ -81,7 +84,7 @@ const Content = () => {
             <ListItem button onClick={() => { navigate("/"); toggleDrawer(false); }}>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem button onClick={() => { navigate("/people"); toggleDrawer(false); }}>
+            <ListItem button onClick={() => { navigate("/peoplecontainer"); toggleDrawer(false); }}>
               <ListItemText primary="People Assets" />
             </ListItem>
           </List>
@@ -100,17 +103,12 @@ const Content = () => {
 
       {/* Suggestions Section */}
       <StyledPaper>
-        {query && (
+        {suggestions && (
           <List>
-            {suggestions.map((item, index) => (
+            {suggestions.length > 0 && suggestions?.map((item, index) => (
               <ListItem button key={index} onClick={() => handleSuggestionClick(item)}>
                 <ListItemText
-                  primary={item.name || 'Unknown'}
-                  secondary={
-                    <Typography variant="body2" color="text.secondary">
-                      {truncateDescription(item.description || 'No description available', 100)}
-                    </Typography>
-                  }
+                  primary={item || 'Unknown'}
                 />
               </ListItem>
             ))}
@@ -119,27 +117,27 @@ const Content = () => {
       </StyledPaper>
 
       {/* Selected Item Details Section */}
-      {selectedItem && (
+      {query && selectedItem && (
         <StyledPaper>
           <Typography variant="h6">{selectedItem.name}</Typography>
-          <Typography variant="body1"><strong>Topic ID:</strong> {selectedItem.topicId || 'Unknown'}</Typography>
+          <Typography variant="body1"><strong>Topic ID:</strong> {selectedItem.id || 'Unknown'}</Typography>
           <Typography variant="body1"><strong>Description:</strong> {selectedItem.description || 'Unknown'}</Typography>
-          <Typography variant="body1"><strong>Program ID:</strong> {selectedItem.programId || 'Unknown'}</Typography>
+          {/* <Typography variant="body1"><strong>Program ID:</strong> {selectedItem.programId || 'Unknown'}</Typography> */} 
 
-          {selectedItem.contentFiles.length > 0 && (
+          {selectedItem.topicFiles.length > 0 && (
             <Box>
               <Typography variant="h6">Content Files:</Typography>
               <List>
-                {selectedItem.contentFiles.map((file, fileIndex) => (
+                {selectedItem.topicFiles.map((file, fileIndex) => (
                   <ListItem key={fileIndex}>
                     <ListItemText
                       primary={<Typography variant="body2"><strong>File Name:</strong> {file.fileName}</Typography>}
                       secondary={
                         <Box>
                           <Typography variant="body2"><strong>Content URL:</strong> <a href={file.contentUrl} target="_blank" rel="noopener noreferrer">{file.contentUrl}</a></Typography>
-                          <Typography variant="body2"><strong>Creation Date:</strong> {new Date(file.contentCreationDate).toLocaleDateString()}</Typography>
-                          <Typography variant="body2"><strong>Content Size:</strong> {file.contentSize} MB</Typography>
-                          <Typography variant="body2"><strong>Content Type:</strong> {file.contentType}</Typography>
+                          <Typography variant="body2"><strong>Creation Date:</strong> {new Date(file.createdAt).toLocaleDateString()}</Typography>
+                          <Typography variant="body2"><strong>Content Size:</strong> {file.size} MB</Typography>
+                          <Typography variant="body2"><strong>Content Type:</strong> {file.type}</Typography>
                         </Box>
                       }
                     />
