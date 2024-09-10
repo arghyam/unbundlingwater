@@ -1,7 +1,8 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database');
+const sequelize = require('../config/database');
+const UserTopics = require('./userTopics');
 
-const User = sequelize.define('User', {
+const User = sequelize.define('user', {
   name: {
     type: DataTypes.STRING,
   },
@@ -13,10 +14,13 @@ const User = sequelize.define('User', {
   state: DataTypes.STRING,
   district: DataTypes.STRING,
   city: DataTypes.STRING,
-  phoneNumber: {
+  latitude: DataTypes.STRING,
+  longitude: DataTypes.STRING,
+
+  phonenumber: {
     type: DataTypes.STRING,
     get() {
-      const rawValue = this.getDataValue('phoneNumber');
+      const rawValue = this.getDataValue('phonenumber');
       if (rawValue) {
         
         return rawValue.slice(0, 2) + '*'.repeat(rawValue.length - 2);
@@ -24,10 +28,10 @@ const User = sequelize.define('User', {
       return null;
     },
   },
-  emailId: {
+  emailid: {
     type: DataTypes.STRING,
     get() {
-      const rawValue = this.getDataValue('emailId');
+      const rawValue = this.getDataValue('emailid');
       if (rawValue) {
         
         const [localPart, domain] = rawValue.split('.');
@@ -38,7 +42,13 @@ const User = sequelize.define('User', {
       return null;
     },
   },
-  userRole: DataTypes.STRING,
+  userrole: DataTypes.STRING,
+});
+
+User.hasMany(UserTopics, {
+  foreignKey: 'userId',
+  sourceKey: 'userId',
+  as: 'topics' // Alias for associated topics
 });
 
 module.exports = User;
