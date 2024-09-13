@@ -12,8 +12,8 @@ const FilterSection = ({ filterOption, setFilterOption }) => (
         label="Filter by"
       >
         <MenuItem value="all">All</MenuItem>
-        <MenuItem value="trainers">Trainers</MenuItem>
-        <MenuItem value="trainees">Trainees</MenuItem>
+        <MenuItem value="TRAINER TRAINEE">Trainers</MenuItem>
+        <MenuItem value="TRAINEE">Trainees</MenuItem>
       </Select>
     </FormControl>
   </Grid>

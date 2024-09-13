@@ -144,8 +144,9 @@ const PeopleContainer = () => {
                             filterOption={filterOption}
                             setFilterOption={setFilterOption}
                         />
+                        {console.log(filterOption)}
                         {showList && (
-                            <UserList userData={userData} />
+                            <UserList userData={filterOption === "all" ? userData : userData.filter(user => user.userRole.trim().toLowerCase() === filterOption.trim().toLowerCase())} />
                         )}
                     </>
                 )}
