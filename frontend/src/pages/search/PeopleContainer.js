@@ -39,9 +39,9 @@ const PeopleContainer = () => {
     };
 
     const handleSearch = (value, type) => {
-        setNameQuery(null)
-        setLocationQuery(null)
-        setTopicQuery(null)
+        setNameQuery('')
+        setLocationQuery('')
+        setTopicQuery('')
         switch (type) {
             case "name":
                 searchUsersByName(value).then(data => {

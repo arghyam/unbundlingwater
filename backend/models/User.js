@@ -31,7 +31,13 @@ const User = sequelize.define('User', {
       return maskEmail(rawValue);
     }
   },
-  userRole: DataTypes.STRING
+  userRole: DataTypes.STRING,
+  latitude: {
+    type: DataTypes.DECIMAL(10, 8),
+  },
+  longitude: {
+    type: DataTypes.DECIMAL(11, 8),
+  }
 });
 
 // Utility function to mask phone number

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User, UserTrainer, UserTopic } = require('../models');
-const { Op } = require('sequelize');
+const { Op, fn, col, literal } = require('sequelize');
 
 
 User.hasMany(UserTopic, { foreignKey: 'userId', as: 'userTopics', sourceKey: 'userId' });
@@ -170,5 +170,53 @@ router.get('/bylocation/:name', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+router.get("/state-count", async (req, res) => {
+  try {
+    const result = await User.findAll({
+      attributes: ['state', [fn('COUNT', fn('DISTINCT', col('id'))), 'user_count']],
+      group: ['state'],
+      order: [[literal('user_count'), 'DESC']],
+    });
+    res.json(result);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/district-count/:state", async (req, res) => {
+  const { state } = req.params;
+  try {
+    const result = await User.findAll({
+      where: { state },
+      attributes: ['district', [fn('COUNT', fn('DISTINCT', col('id'))), 'user_count']],
+      group: ['district'],
+      order: [[literal('user_count'), 'DESC']],
+    });
+    res.json(result);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/bylocation/:state/:district", async (req, res) => {
+  const { state, district } = req.params;
+  try {
+    const users = await User.findAll({
+      where: {
+        state,
+        district,
+      },
+      attributes: ['id', 'name', 'city', 'district', 'state', 'phoneNumber', 'emailId', 'userRole','latitude', 'longitude']
+    });
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 
 module.exports = router;

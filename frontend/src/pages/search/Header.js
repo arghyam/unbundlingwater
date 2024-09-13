@@ -10,7 +10,8 @@ const Header = ({ setDrawerOpen }) => (
       top: 0,
       left: 0,
       width: '100%',
-      backgroundColor: '#fff',
+      backgroundColor: 'primary.main',
+      backdropFilter: 'blur(10px)',
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
       zIndex: 1000,
       display: 'flex',
@@ -26,7 +27,7 @@ const Header = ({ setDrawerOpen }) => (
     >
       <MenuIcon />
     </IconButton>
-    <Typography variant="h6" sx={{ flexGrow: 1, textAlign: 'center' }}>
+    <Typography variant="h6" sx={{ flexGrow: 1, textAlign: 'center', color: 'primary.contrastText' }}>
       People
     </Typography>
   </Box>

@@ -3,7 +3,6 @@ import { TextField, List, ListItem, ListItemText, Typography, Box, Paper, Drawer
 import { styled } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
-import { data } from '../content';
 import { fetchTopicsByName, searchTopicsByName } from '../api';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -23,8 +22,10 @@ const Content = () => {
   useEffect(() => {
     if (query) {
       searchTopicsByName(query).then(data => {
-        setSuggestions(data.map(i => i.name))
-      })
+        if(data && data.length > 0){
+          setSuggestions(data.map(i => i.name));
+        }
+      });
     } else {
       setSuggestions([]);
     }
@@ -32,19 +33,17 @@ const Content = () => {
 
   const handleSearchChange = (e) => {
     fetchTopicsByName(e.target.value).then(data => {
-      setSuggestions(data)
-    })
+      setSuggestions(data);
+    });
     setQuery(e.target.value.toLowerCase());
     setSelectedItem(null);
   };
 
   const handleSuggestionClick = (item) => {
     fetchTopicsByName(item).then(data => {
-      console.log(data)
-      setSelectedItem(data[0])
-      // setQuery(item)
-    })
-    setSuggestions(null);
+      setSelectedItem(data[0]);
+    });
+    setSuggestions([]);
   };
 
   const truncateDescription = (description, maxLength) => {
@@ -60,21 +59,21 @@ const Content = () => {
     <Box sx={{ p: 2, maxWidth: '100%', mx: 'auto' }}>
       {/* Header Section */}
       <Box sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          backgroundColor: '#fff',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-          zIndex: 1000,
-          display: 'flex',
-          alignItems: 'center',
-          padding: '8px 16px',
-        }}>
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        backgroundColor: '#1976d2', // Adjust color to your preference
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        zIndex: 1000,
+        display: 'flex',
+        alignItems: 'center',
+        padding: '8px 16px',
+      }}>
         <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => toggleDrawer(true)}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" sx={{ flexGrow: 1, ml: 2 }}>Content Page</Typography>
+        <Typography variant="h6" sx={{ flexGrow: 1, ml: 2, color: '#fff' }}>Content Page</Typography>
       </Box>
 
       {/* Drawer Section */}
@@ -86,6 +85,9 @@ const Content = () => {
             </ListItem>
             <ListItem button onClick={() => { navigate("/peoplecontainer"); toggleDrawer(false); }}>
               <ListItemText primary="People Assets" />
+            </ListItem>
+            <ListItem button onClick={() => { navigate("/map"); toggleDrawer(false); }}>
+              <ListItemText primary="Map" />
             </ListItem>
           </List>
         </Box>
@@ -102,10 +104,11 @@ const Content = () => {
       />
 
       {/* Suggestions Section */}
-      <StyledPaper>
-        {suggestions && (
+
+      {suggestions && suggestions.length > 0  && (
+        <StyledPaper>
           <List>
-            {suggestions.length > 0 && suggestions?.map((item, index) => (
+            {suggestions?.map((item, index) => (
               <ListItem button key={index} onClick={() => handleSuggestionClick(item)}>
                 <ListItemText
                   primary={item || 'Unknown'}
@@ -113,22 +116,21 @@ const Content = () => {
               </ListItem>
             ))}
           </List>
-        )}
-      </StyledPaper>
+        </StyledPaper>
+      )}
 
       {/* Selected Item Details Section */}
       {query && selectedItem && (
-        <StyledPaper>
+        <StyledPaper sx={{ mt: 2 }}>
           <Typography variant="h6">{selectedItem.name}</Typography>
           <Typography variant="body1"><strong>Topic ID:</strong> {selectedItem.id || 'Unknown'}</Typography>
-          <Typography variant="body1"><strong>Description:</strong> {selectedItem.description || 'Unknown'}</Typography>
-          {/* <Typography variant="body1"><strong>Program ID:</strong> {selectedItem.programId || 'Unknown'}</Typography> */} 
+          <Typography variant="body1"><strong>Description:</strong> {truncateDescription(selectedItem.description, 100) || 'Unknown'}</Typography>
 
           {selectedItem.topicFiles.length > 0 && (
-            <Box>
+            <Box sx={{ mt: 2 }}>
               <Typography variant="h6">Content Files:</Typography>
               <List>
-                {selectedItem.topicFiles.map((file, fileIndex) => (
+                {selectedItem?.topicFiles?.map((file, fileIndex) => (
                   <ListItem key={fileIndex}>
                     <ListItemText
                       primary={<Typography variant="body2"><strong>File Name:</strong> {file.fileName}</Typography>}
