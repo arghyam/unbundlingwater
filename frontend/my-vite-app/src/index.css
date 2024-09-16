@@ -23,3 +23,9 @@
 .active {
   @apply bg-blue-100 text-blue-600;
 }
+
+@layer utilities {
+  .font-Montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+}

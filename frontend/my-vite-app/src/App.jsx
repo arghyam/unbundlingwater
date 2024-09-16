@@ -13,6 +13,17 @@ import TraineeList from "./pages/TraineeList";
 import Ping from "./pages/pong"
 import PeopleContainer from "./pages/search/PeopleContainer";
 
+// function App() {
+//   return (
+//     <div>
+//       <h1>Hello, Vite!</h1>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
 const App = () => {
   return (
     <Router>
