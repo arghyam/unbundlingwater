@@ -1,6 +1,12 @@
 // Drawer.js
 import React from "react";
-import { Drawer as MuiDrawer, Box, List, ListItem, ListItemText } from "@mui/material";
+import {
+  Drawer as MuiDrawer,
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const RoundedDrawer = styled(MuiDrawer)(({ theme }) => ({
@@ -9,7 +15,13 @@ const RoundedDrawer = styled(MuiDrawer)(({ theme }) => ({
   },
 }));
 
-const Drawer = ({ drawerOpen, setDrawerOpen, navigate, showMap, setShowMap }) => (
+const Drawer = ({
+  drawerOpen,
+  setDrawerOpen,
+  navigate,
+  showMap,
+  setShowMap,
+}) => (
   <RoundedDrawer
     anchor="left"
     open={drawerOpen}

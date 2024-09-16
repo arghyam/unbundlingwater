@@ -6,17 +6,17 @@ import { Menu as MenuIcon } from "@mui/icons-material";
 const Header = ({ setDrawerOpen }) => (
   <Box
     sx={{
-      position: 'fixed',
+      position: "fixed",
       top: 0,
       left: 0,
-      width: '100%',
-      backgroundColor: 'primary.main',
-      backdropFilter: 'blur(10px)',
-      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+      width: "100%",
+      backgroundColor: "primary.main",
+      backdropFilter: "blur(10px)",
+      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
       zIndex: 1000,
-      display: 'flex',
-      alignItems: 'center',
-      padding: '8px 16px',
+      display: "flex",
+      alignItems: "center",
+      padding: "8px 16px",
     }}
   >
     <IconButton
@@ -27,7 +27,10 @@ const Header = ({ setDrawerOpen }) => (
     >
       <MenuIcon />
     </IconButton>
-    <Typography variant="h6" sx={{ flexGrow: 1, textAlign: 'center', color: 'primary.contrastText' }}>
+    <Typography
+      variant="h6"
+      sx={{ flexGrow: 1, textAlign: "center", color: "primary.contrastText" }}
+    >
       People
     </Typography>
   </Box>

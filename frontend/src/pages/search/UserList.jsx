@@ -28,7 +28,9 @@ const UserList = ({ userData }) => {
 
 const UserListItem = ({ item, index, expandedIndex, toggleExpand }) => {
   const userDetailData = item || {};
-  const location = `${userDetailData.city || "N/A"}, ${userDetailData.district || "N/A"}, ${userDetailData.state || "N/A"}`;
+  const location = `${userDetailData.city || "N/A"}, ${
+    userDetailData.district || "N/A"
+  }, ${userDetailData.state || "N/A"}`;
 
   return (
     <ListItem
@@ -36,10 +38,7 @@ const UserListItem = ({ item, index, expandedIndex, toggleExpand }) => {
       onClick={() => toggleExpand(index)}
       className={`user-card ${expandedIndex === index ? "expanded" : ""}`}
     >
-      <ListItemText
-        primary={userDetailData.name}
-        secondary={location}
-      />
+      <ListItemText primary={userDetailData.name} secondary={location} />
       {expandedIndex === index ? <ExpandLess /> : <ExpandMore />}
       {expandedIndex === index && (
         <UserDetails userDetailData={userDetailData} />
@@ -50,14 +49,27 @@ const UserListItem = ({ item, index, expandedIndex, toggleExpand }) => {
 
 const UserDetails = ({ userDetailData }) => (
   <Box className="dropdown-content">
-    <Typography variant="body2">Location: {`${userDetailData.city || "N/A"}, ${userDetailData.district || "N/A"}, ${userDetailData.state || "N/A"}`}</Typography>
-    <Typography variant="body2">Mobile Number: {userDetailData.phoneNumber || "N/A"}</Typography>
-    <Typography variant="body2">Email: {userDetailData.emailId || "N/A"}</Typography>
-    <Typography variant="body2"><strong>Trainings Done:</strong></Typography>
+    <Typography variant="body2">
+      Location:{" "}
+      {`${userDetailData.city || "N/A"}, ${userDetailData.district || "N/A"}, ${
+        userDetailData.state || "N/A"
+      }`}
+    </Typography>
+    <Typography variant="body2">
+      Mobile Number: {userDetailData.phoneNumber || "N/A"}
+    </Typography>
+    <Typography variant="body2">
+      Email: {userDetailData.emailId || "N/A"}
+    </Typography>
+    <Typography variant="body2">
+      <strong>Trainings Done:</strong>
+    </Typography>
     <TrainingList trainings={userDetailData.userTopics} />
     {userDetailData.userTrainers && userDetailData.userTrainers.length > 0 && (
       <>
-        <Typography variant="body2"><strong>Trainer Data:</strong></Typography>
+        <Typography variant="body2">
+          <strong>Trainer Data:</strong>
+        </Typography>
         <TrainingList trainings={userDetailData.userTrainers} />
       </>
     )}
@@ -71,7 +83,10 @@ const TrainingList = ({ trainings }) => (
         <Box key={`training-${idx}`} sx={{ mb: 2 }}>
           <Typography variant="body2">{training.name}</Typography>
           <Typography variant="body2" color="textSecondary">
-            Issued: {new Date(training.issuedAt || training.issueDate).toLocaleDateString()}
+            Issued:{" "}
+            {new Date(
+              training.issuedAt || training.issueDate
+            ).toLocaleDateString()}
           </Typography>
         </Box>
       ))

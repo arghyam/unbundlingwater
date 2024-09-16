@@ -4,18 +4,18 @@ import Homes from "./pages/Home";
 import Analytics from "./pages/Analytics";
 import Content from "./pages/Content";
 import Contact from "./pages/Contact";
-import People from "./pages/People";
+// import People from "./pages/People";
 import About from "./pages/About";
 import MapView from "./MapView";
 import { userData } from "./complete_userdetails";
 import TrainersList from "./pages/TrainersList";
 import TraineeList from "./pages/TraineeList";
-import Ping from "./pages/pong"
+import Ping from "./pages/pong";
 import PeopleContainer from "./pages/search/PeopleContainer";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/people">
       <RootLayout>
         <Routes>
           <Route path="/" element={<Homes />} />
@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/map" element={<MapView userData={userData} />} />
           <Route path="/trainers-list" element={<TrainersList />} />
           <Route path="/trainee-list" element={<TraineeList />} />
-          <Route path="/ping" element={<Ping/>}/>
+          <Route path="/ping" element={<Ping />} />
         </Routes>
       </RootLayout>
     </Router>

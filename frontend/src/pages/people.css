@@ -1,5 +1,4 @@
-
- /* Styles for responsiveness */
+/* Styles for responsiveness */
 .people {
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -107,14 +106,12 @@
   margin-bottom: 16px;
 }
 
-
 /* Responsive styles */
 @media (max-width: 600px) {
   .search-container {
     margin-bottom: 15px;
-    margin-top: 16px; 
+    margin-top: 16px;
   }
-
 
   .search {
     font-size: 14px;

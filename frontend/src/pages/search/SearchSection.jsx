@@ -1,7 +1,15 @@
 import React from "react";
 import { Grid, TextField, List, ListItem, ListItemText } from "@mui/material";
 
-const SearchSection = ({ nameQuery, locationQuery, topicQuery, handleSearch, showSuggestions, selectSuggestion, filterData }) => (
+const SearchSection = ({
+  nameQuery,
+  locationQuery,
+  topicQuery,
+  handleSearch,
+  showSuggestions,
+  selectSuggestion,
+  filterData,
+}) => (
   <Grid container spacing={2}>
     <Grid item xs={12} md={4}>
       <TextField
@@ -54,11 +62,7 @@ const SearchSection = ({ nameQuery, locationQuery, topicQuery, handleSearch, sho
 const SuggestionList = ({ suggestions, onSelect }) => (
   <List>
     {suggestions.map((suggestion, index) => (
-      <ListItem
-        button
-        key={index}
-        onClick={() => onSelect(suggestion)}
-      >
+      <ListItem button key={index} onClick={() => onSelect(suggestion)}>
         <ListItemText primary={suggestion} />
       </ListItem>
     ))}

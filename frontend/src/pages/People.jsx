@@ -1,11 +1,25 @@
 import "./people.css";
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { userData } from "../complete_userdetails";
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+// import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import MapView from "../MapView";
-import { Box, TextField, List, ListItem, ListItemText, Typography, Grid, MenuItem, Select, FormControl, InputLabel, IconButton, Drawer } from "@mui/material";
+import {
+  Box,
+  TextField,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  Grid,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  IconButton,
+  Drawer,
+} from "@mui/material";
 import { ExpandMore, ExpandLess, Menu as MenuIcon } from "@mui/icons-material";
 
 const People = () => {
@@ -195,16 +209,16 @@ const People = () => {
       {/* Header */}
       <Box
         sx={{
-          position: 'fixed',
+          position: "fixed",
           top: 0,
           left: 0,
-          width: '100%',
-          backgroundColor: '#fff',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          width: "100%",
+          backgroundColor: "#fff",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
           zIndex: 1000,
-          display: 'flex',
-          alignItems: 'center',
-          padding: '8px 16px',
+          display: "flex",
+          alignItems: "center",
+          padding: "8px 16px",
         }}
       >
         <IconButton
@@ -215,7 +229,7 @@ const People = () => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" sx={{ flexGrow: 1, textAlign: 'center' }}>
+        <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "center" }}>
           People
         </Typography>
       </Box>
@@ -232,17 +246,23 @@ const People = () => {
               <ListItemText primary="Home" />
             </ListItem>
 
-            <ListItem button onClick={() => { 
-              setShowMap(!showMap);
-              setDrawerOpen(false); 
-            }}>
+            <ListItem
+              button
+              onClick={() => {
+                setShowMap(!showMap);
+                setDrawerOpen(false);
+              }}
+            >
               <ListItemText primary={showMap ? "List View" : "Map View"} />
             </ListItem>
 
-            <ListItem button onClick={() => {
-              navigate("/content");
-              setDrawerOpen(false);
-            }}>
+            <ListItem
+              button
+              onClick={() => {
+                navigate("/content");
+                setDrawerOpen(false);
+              }}
+            >
               <ListItemText primary="Content Page" />
             </ListItem>
           </List>
@@ -250,7 +270,7 @@ const People = () => {
       </Drawer>
 
       {/* Main Content */}
-      <Box sx={{ marginTop: '64px' }}>
+      <Box sx={{ marginTop: "64px" }}>
         {showMap ? (
           <MapView userData={filteredData} />
         ) : (
@@ -318,7 +338,9 @@ const People = () => {
                           <ListItem
                             button
                             key={index}
-                            onClick={() => selectSuggestion(suggestion, "topic")}
+                            onClick={() =>
+                              selectSuggestion(suggestion, "topic")
+                            }
                           >
                             <ListItemText primary={suggestion} />
                           </ListItem>
@@ -354,47 +376,73 @@ const People = () => {
                   const district = userDetailData.district || "N/A";
                   const state = userDetailData.state || "N/A";
                   const location = `${city}, ${district}, ${state}`;
-                  
-                  const traineeData = (userDetailData.traineeData || []).map((trainee, idx) => (
-                    <Box key={`trainee-${idx}`} sx={{ mb: 2 }}>
-                      <Typography variant="body2">{trainee.topicName}</Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Issued: {new Date(trainee.issuedDate).toLocaleDateString()}
-                      </Typography>
-                    </Box>
-                  ));
 
-                  const trainerData = (userDetailData.trainerData || []).map((trainer, idx) => (
-                    <Box key={`trainer-${idx}`} sx={{ mb: 2 }}>
-                      <Typography variant="body2">{trainer.topicName}</Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Issued: {new Date(trainer.issuedDate).toLocaleDateString()}
-                      </Typography>
-                    </Box>
-                  ));
+                  const traineeData = (userDetailData.traineeData || []).map(
+                    (trainee, idx) => (
+                      <Box key={`trainee-${idx}`} sx={{ mb: 2 }}>
+                        <Typography variant="body2">
+                          {trainee.topicName}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Issued:{" "}
+                          {new Date(trainee.issuedDate).toLocaleDateString()}
+                        </Typography>
+                      </Box>
+                    )
+                  );
+
+                  const trainerData = (userDetailData.trainerData || []).map(
+                    (trainer, idx) => (
+                      <Box key={`trainer-${idx}`} sx={{ mb: 2 }}>
+                        <Typography variant="body2">
+                          {trainer.topicName}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Issued:{" "}
+                          {new Date(trainer.issuedDate).toLocaleDateString()}
+                        </Typography>
+                      </Box>
+                    )
+                  );
 
                   return (
                     <ListItem
                       key={index}
                       button
                       onClick={() => toggleExpand(index)}
-                      className={`user-card ${expandedIndex === index ? "expanded" : ""}`}
+                      className={`user-card ${
+                        expandedIndex === index ? "expanded" : ""
+                      }`}
                     >
                       <ListItemText
                         primary={userDetailData.name}
                         secondary={location}
                       />
-                      {expandedIndex === index ? <ExpandLess /> : <ExpandMore />}
+                      {expandedIndex === index ? (
+                        <ExpandLess />
+                      ) : (
+                        <ExpandMore />
+                      )}
                       {expandedIndex === index && (
                         <Box className="dropdown-content">
-                          <Typography variant="body2">Location: {location}</Typography>
-                          <Typography variant="body2">Mobile Number: {mobileNumber}</Typography>
-                          <Typography variant="body2">Email: {email}</Typography>
-                          <Typography variant="body2"><strong>Trainings Done:</strong></Typography>
+                          <Typography variant="body2">
+                            Location: {location}
+                          </Typography>
+                          <Typography variant="body2">
+                            Mobile Number: {mobileNumber}
+                          </Typography>
+                          <Typography variant="body2">
+                            Email: {email}
+                          </Typography>
+                          <Typography variant="body2">
+                            <strong>Trainings Done:</strong>
+                          </Typography>
                           {traineeData.length > 0 ? traineeData : "None"}
                           {trainerData.length > 0 && (
                             <>
-                              <Typography variant="body2"><strong>Trainer Data:</strong></Typography>
+                              <Typography variant="body2">
+                                <strong>Trainer Data:</strong>
+                              </Typography>
                               {trainerData}
                             </>
                           )}
