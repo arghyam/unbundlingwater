@@ -1,5 +1,5 @@
-// FilterSection.js
-import React from "react";
+
+import PropTypes from "prop-types";
 import { Grid, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 const FilterSection = ({ filterOption, setFilterOption }) => (
@@ -18,5 +18,11 @@ const FilterSection = ({ filterOption, setFilterOption }) => (
     </FormControl>
   </Grid>
 );
+
+// Add PropTypes for props validation
+FilterSection.propTypes = {
+  filterOption: PropTypes.string.isRequired,
+  setFilterOption: PropTypes.func.isRequired,
+};
 
 export default FilterSection;

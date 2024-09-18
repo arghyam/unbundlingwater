@@ -1,6 +1,6 @@
 import React from "react";
 import { userData } from "../complete_userdetails";
-import { Box, List, ListItem, ListItemText, Collapse, Typography, Grid } from "@mui/material";
+import { Box, List, ListItem, ListItemText, Collapse, Typography } from "@mui/material";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
 import { useState } from "react";
 

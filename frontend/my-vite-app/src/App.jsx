@@ -4,7 +4,6 @@ import Homes from "./pages/Home";
 import Analytics from "./pages/Analytics";
 import Content from "./pages/Content";
 import Contact from "./pages/Contact";
-import People from "./pages/People";
 import About from "./pages/About";
 import MapView from "./MapView";
 import { userData } from "./complete_userdetails";

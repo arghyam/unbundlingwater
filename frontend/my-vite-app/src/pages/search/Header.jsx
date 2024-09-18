@@ -1,5 +1,5 @@
-// Header.js
-import React from "react";
+
+import PropTypes from "prop-types";
 import { Box, Typography, IconButton } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 
@@ -32,5 +32,10 @@ const Header = ({ setDrawerOpen }) => (
     </Typography>
   </Box>
 );
+
+// Add PropTypes for props validation
+Header.propTypes = {
+  setDrawerOpen: PropTypes.func.isRequired,
+};
 
 export default Header;

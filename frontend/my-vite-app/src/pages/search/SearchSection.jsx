@@ -1,7 +1,16 @@
-import React from "react";
+
+import PropTypes from "prop-types";
 import { Grid, TextField, List, ListItem, ListItemText } from "@mui/material";
 
-const SearchSection = ({ nameQuery, locationQuery, topicQuery, handleSearch, showSuggestions, selectSuggestion, filterData }) => (
+const SearchSection = ({
+  nameQuery,
+  locationQuery,
+  topicQuery,
+  handleSearch,
+  showSuggestions,
+  selectSuggestion,
+  filterData,
+}) => (
   <Grid container spacing={2}>
     <Grid item xs={12} md={4}>
       <TextField
@@ -54,15 +63,27 @@ const SearchSection = ({ nameQuery, locationQuery, topicQuery, handleSearch, sho
 const SuggestionList = ({ suggestions, onSelect }) => (
   <List>
     {suggestions.map((suggestion, index) => (
-      <ListItem
-        button
-        key={index}
-        onClick={() => onSelect(suggestion)}
-      >
+      <ListItem button key={index} onClick={() => onSelect(suggestion)}>
         <ListItemText primary={suggestion} />
       </ListItem>
     ))}
   </List>
 );
+
+// Define prop types for validation
+SearchSection.propTypes = {
+  nameQuery: PropTypes.string.isRequired,
+  locationQuery: PropTypes.string.isRequired,
+  topicQuery: PropTypes.string.isRequired,
+  handleSearch: PropTypes.func.isRequired,
+  showSuggestions: PropTypes.bool.isRequired,
+  selectSuggestion: PropTypes.func.isRequired,
+  filterData: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+SuggestionList.propTypes = {
+  suggestions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSelect: PropTypes.func.isRequired,
+};
 
 export default SearchSection;

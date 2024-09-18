@@ -1,7 +1,6 @@
-// Drawer.js
-import React from "react";
 import { Drawer as MuiDrawer, Box, List, ListItem, ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import PropTypes from 'prop-types'; // Import PropTypes
 
 const RoundedDrawer = styled(MuiDrawer)(({ theme }) => ({
   "& .MuiPaper-root": {
@@ -42,5 +41,14 @@ const Drawer = ({ drawerOpen, setDrawerOpen, navigate, showMap, setShowMap }) =>
     </Box>
   </RoundedDrawer>
 );
+
+// Define prop types for the component
+Drawer.propTypes = {
+  drawerOpen: PropTypes.bool.isRequired,
+  setDrawerOpen: PropTypes.func.isRequired,
+  navigate: PropTypes.func.isRequired,
+  showMap: PropTypes.bool.isRequired,
+  setShowMap: PropTypes.func.isRequired,
+};
 
 export default Drawer;

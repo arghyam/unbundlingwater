@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Box } from "@mui/material";
 import Header from "./Header";
@@ -34,9 +34,6 @@ const PeopleContainer = () => {
 
     }, [nameQuery, locationQuery, topicQuery, filterOption]);
 
-    const search = (data) => {
-        // ... (search logic remains the same)
-    };
 
     const handleSearch = (value, type) => {
         setNameQuery('')

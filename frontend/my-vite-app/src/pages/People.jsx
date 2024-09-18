@@ -2,7 +2,7 @@ import "./people.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { userData } from "../complete_userdetails";
-import L from 'leaflet';
+
 import 'leaflet/dist/leaflet.css';
 import MapView from "../MapView";
 import { Box, TextField, List, ListItem, ListItemText, Typography, Grid, MenuItem, Select, FormControl, InputLabel, IconButton, Drawer } from "@mui/material";

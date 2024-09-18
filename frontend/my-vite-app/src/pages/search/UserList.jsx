@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react"; // Removed unused React import
 import { List, ListItem, ListItemText, Box, Typography } from "@mui/material";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
+import PropTypes from 'prop-types'; // Import PropTypes
 
 const UserList = ({ userData }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -10,20 +11,22 @@ const UserList = ({ userData }) => {
   };
 
   return (
-    <>
-      <List>
-        {userData.map((item, index) => (
-          <UserListItem
-            key={index}
-            item={item}
-            index={index}
-            expandedIndex={expandedIndex}
-            toggleExpand={toggleExpand}
-          />
-        ))}
-      </List>
-    </>
+    <List>
+      {userData.map((item, index) => (
+        <UserListItem
+          key={index}
+          item={item}
+          index={index}
+          expandedIndex={expandedIndex}
+          toggleExpand={toggleExpand}
+        />
+      ))}
+    </List>
   );
+};
+
+UserList.propTypes = {
+  userData: PropTypes.arrayOf(PropTypes.object).isRequired, // Define prop-types for userData
 };
 
 const UserListItem = ({ item, index, expandedIndex, toggleExpand }) => {
@@ -48,6 +51,13 @@ const UserListItem = ({ item, index, expandedIndex, toggleExpand }) => {
   );
 };
 
+UserListItem.propTypes = {
+  item: PropTypes.object.isRequired, // Define prop-types for item
+  index: PropTypes.number.isRequired, // Define prop-types for index
+  expandedIndex: PropTypes.number, // expandedIndex can be null
+  toggleExpand: PropTypes.func.isRequired, // Define prop-types for toggleExpand
+};
+
 const UserDetails = ({ userDetailData }) => (
   <Box className="dropdown-content">
     <Typography variant="body2">Location: {`${userDetailData.city || "N/A"}, ${userDetailData.district || "N/A"}, ${userDetailData.state || "N/A"}`}</Typography>
@@ -63,6 +73,18 @@ const UserDetails = ({ userDetailData }) => (
     )}
   </Box>
 );
+
+UserDetails.propTypes = {
+  userDetailData: PropTypes.shape({
+    city: PropTypes.string,
+    district: PropTypes.string,
+    state: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    emailId: PropTypes.string,
+    userTopics: PropTypes.arrayOf(PropTypes.object),
+    userTrainers: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired, // Define prop-types for userDetailData
+};
 
 const TrainingList = ({ trainings }) => (
   <>
@@ -80,5 +102,13 @@ const TrainingList = ({ trainings }) => (
     )}
   </>
 );
+
+TrainingList.propTypes = {
+  trainings: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    issuedAt: PropTypes.string,
+    issueDate: PropTypes.string,
+  })).isRequired, // Define prop-types for trainings
+};
 
 export default UserList;

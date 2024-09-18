@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { TextField, List, ListItem, ListItemText, Typography, Box, Paper, Drawer, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -9,7 +9,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
   margin: theme.spacing(2),
   maxWidth: '100%',
-  margin: 'auto',
+  // margin: 'auto',
 }));
 
 const Content = () => {

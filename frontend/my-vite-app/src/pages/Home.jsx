@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -71,9 +71,9 @@ const ImageContainer = styled(Box)(({ theme }) => ({
 
 
 function Homes() {
-  const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null);
+  // const [query, setQuery] = useState("");
+  // const [suggestions, setSuggestions] = useState([]);
+  // const [selectedItem, setSelectedItem] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const navigate = useNavigate();
 

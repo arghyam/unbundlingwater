@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { 
@@ -67,7 +67,7 @@ const stateColors = {
   'Uttarakhand': '#7B68EE',
   'Goa': '#D2691E',
   'Arunachal Pradesh': '#A52A2A',
-  'Nagaland': '#800080',
+  
   'Manipur': '#00FF7F',
   'Tripura': '#FF1493',
   'Meghalaya': '#4B0082',
@@ -80,7 +80,7 @@ const stateColors = {
   'Puducherry': '#F0E68C',
   'Jammu and Kashmir': '#D8BFD8',
   'Ladakh': '#F4A460',
-  'Sikkim': '#D3D3D3',
+  
   'Nagaland': '#F0F8FF',
 };
 
@@ -458,11 +458,8 @@ const MapView = () => {
       const {
         latitude,
         longitude,
-        name,
-        emailId,
-        phoneNumber,
-        traineeTrainings,
-        trainerTrainings,
+        
+        
       } = user;
       const lat = parseFloat(latitude);
       const lng = parseFloat(longitude);
@@ -477,33 +474,33 @@ const MapView = () => {
       const userIcon = createUserIcon(stateColors[selectedState] || "#FF5733");
 
       // Prepare trainee trainings content
-      const traineeTrainingsContent = traineeTrainings
-        ? traineeTrainings
-          .map(
-            (training) => `
-            <li>
-              <strong>Topic Name:</strong> ${training.topicname1 || ""}<br/>
-              <strong>Issued Date:</strong> ${training.issueddate1 || ""}
-            </li>
-          `
-          )
-          .join("")
-        : "";
+      // const traineeTrainingsContent = traineeTrainings
+      //   ? traineeTrainings
+      //     .map(
+      //       (training) => `
+      //       <li>
+      //         <strong>Topic Name:</strong> ${training.topicname1 || ""}<br/>
+      //         <strong>Issued Date:</strong> ${training.issueddate1 || ""}
+      //       </li>
+      //     `
+      //     )
+      //     .join("")
+      //   : "";
 
       // Prepare trainer trainings content
-      const trainerTrainingsContent = trainerTrainings
-        ? trainerTrainings
-          .map(
-            (training) => `
-            <li>
-              <strong>Topic Name:</strong> ${training.trainer0topicName || ""
-              }<br/>
-              <strong>Issued Date:</strong> ${training.trainer0issueDate || ""}
-            </li>
-          `
-          )
-          .join("")
-        : "";
+      // const trainerTrainingsContent = trainerTrainings
+      //   ? trainerTrainings
+      //     .map(
+      //       (training) => `
+      //       <li>
+      //         <strong>Topic Name:</strong> ${training.trainer0topicName || ""
+      //         }<br/>
+      //         <strong>Issued Date:</strong> ${training.trainer0issueDate || ""}
+      //       </li>
+      //     `
+      //     )
+      //     .join("")
+      //   : "";
 
       const popupContent = `
         <div>
